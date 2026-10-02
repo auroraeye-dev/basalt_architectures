@@ -14,6 +14,8 @@ This repository serves as an open collection of Basalt-generated architectures a
 
 Each architecture captures a system's components, connections, and structural relationships in a format that can be maintained alongside code and technical documentation.
 
+to _visualize_ all the architecture files just download the files and drag and drop on **basaltarch.io** start page or just copy and paste them on the **CODE VIEW of basalt canvas**
+
 **The idea is simple:** architecture shouldn't live only in static images. It should be structured, reproducible, and continuously improvable.
 
 ## ⚙️ What's inside?
