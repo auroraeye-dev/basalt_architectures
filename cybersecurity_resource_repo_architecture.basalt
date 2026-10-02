@@ -1,0 +1,115 @@
+// @lens: sde
+title: Cybersecurity Resource Repository
+summary: Curated security learning materials
+
+zone "AI Resources" [color: purple, pos: 30,917, size: 398,556] {
+  AI Resources Index [icon: server, pos: 95,987]
+  AI Security Track [icon: server, pos: 295,1059]
+  Course Materials [icon: server, pos: 295,1153]
+  Ethics Privacy Governance Track [icon: server, pos: 295,965]
+  Incident Response Automation Track [icon: server, pos: 295,1247]
+  LLM Engineering Track [icon: server, pos: 295,1341]
+}
+zone "Lab Resources" [color: orange, pos: 1533,808, size: 390,368] {
+  Lab Building Index [icon: server, pos: 1598,873]
+  Ansible Lab Materials [icon: server, pos: 1790,950]
+  Terraform Lab Guide [icon: terraform, pos: 1790,856]
+  WebSploit Lab Guide [icon: server, pos: 1790,1044]
+}
+zone "Certification Resources" [color: blue, pos: 862,12, size: 428,838] {
+  Certification Resources Index [icon: server, pos: 927,86]
+  Cisco Certification Materials [icon: server, pos: 1157,154]
+  Cloud Certification Materials [icon: server, pos: 1157,436]
+  CompTIA Certification Materials [icon: server, pos: 1157,60]
+  ISC2 Certification Materials [icon: server, pos: 1157,624]
+  Kubernetes CNCF Certification Materials [icon: kubernetes, pos: 1157,718]
+  Offensive Security Certification Materials [icon: server, pos: 1157,248]
+  Certification Roadmaps [icon: server, pos: 1157,342]
+  Supplemental Certification Topics [icon: server, pos: 1157,530]
+}
+zone "Cybersecurity Domain Resources" [color: green, pos: 665,945, size: 640,927] {
+  Domain Resources Index [icon: server, pos: 730,1021]
+  Application Security Materials [icon: server, pos: 980,1651]
+  Cloud Container Security Materials [icon: docker, pos: 980,1275]
+  Cryptography PKI Materials [icon: server, pos: 980,1740]
+  Defensive Security Materials [icon: server, pos: 980,993]
+  Fundamentals Materials [icon: server, pos: 980,1087]
+  Governance Risk Compliance Materials [icon: server, pos: 980,1181]
+  Hardware Embedded Security Materials [icon: server, pos: 980,1463]
+  Infrastructure Network Security Materials [icon: server, pos: 980,1369]
+  Labs Practice Materials [icon: server, pos: 980,1557]
+  Offensive Security Materials [icon: server, pos: 1172,1662]
+  Container Security Node Demo [icon: nodejs, pos: 1166,1272]
+  Android Security Sample [icon: android, pos: 1172,1463]
+}
+zone "Training and Reference Resources" [color: yellow, pos: 1527,322, size: 390,462] {
+  Training Reference Index [icon: server, pos: 1592,632]
+  Cheat Sheet Collection [icon: server, pos: 1784,464]
+  OReilly Resource Index [icon: server, pos: 1784,558]
+  Organized Tool Index [icon: server, pos: 1784,370]
+  Follow Sources Index [icon: server, pos: 1784,652]
+  Threat Hunting Resources [icon: server, pos: 1592,444]
+  Repository Documentation [icon: server, pos: 1592,538]
+}
+zone "Platform & DevOps" [color: red, pos: 15,200, size: 600,445] {
+  Source Repository [icon: github, pos: 80,461]
+  Pull Request Assignment Workflow [icon: github, pos: 290,458]
+  Contributor Greeting Workflow [icon: github, pos: 290,364]
+  Stale Item Workflow [icon: github, pos: 290,270]
+  Issue Pull Request Workspace [icon: github, pos: 482,287]
+}
+
+Source Repository > AI Resources Index [conduit: versioned content]
+Source Repository > Lab Building Index [conduit: versioned content]
+Source Repository > Certification Resources Index [conduit: versioned content]
+Source Repository > Domain Resources Index [conduit: versioned content]
+Source Repository > Training Reference Index [conduit: versioned content]
+Source Repository > Threat Hunting Resources [conduit: versioned content]
+Source Repository > Repository Documentation [conduit: versioned content]
+
+AI Resources Index > AI Security Track [conduit: markdown links]
+AI Resources Index > Course Materials [conduit: markdown links]
+AI Resources Index > Ethics Privacy Governance Track [conduit: markdown links]
+AI Resources Index > Incident Response Automation Track [conduit: markdown links]
+AI Resources Index > LLM Engineering Track [conduit: markdown links]
+
+Lab Building Index > Ansible Lab Materials [conduit: documentation links]
+Lab Building Index > Terraform Lab Guide [conduit: documentation links]
+Lab Building Index > WebSploit Lab Guide [conduit: documentation links]
+
+Certification Resources Index > Cisco Certification Materials [conduit: markdown links]
+Certification Resources Index > Cloud Certification Materials [conduit: markdown links]
+Certification Resources Index > CompTIA Certification Materials [conduit: markdown links]
+Certification Resources Index > ISC2 Certification Materials [conduit: markdown links]
+Certification Resources Index > Kubernetes CNCF Certification Materials [conduit: markdown links]
+Certification Resources Index > Offensive Security Certification Materials [conduit: markdown links]
+Certification Resources Index > Certification Roadmaps [conduit: markdown links]
+Certification Resources Index > Supplemental Certification Topics [conduit: markdown links]
+
+Domain Resources Index > Application Security Materials [conduit: markdown links]
+Domain Resources Index > Cloud Container Security Materials [conduit: markdown links]
+Domain Resources Index > Cryptography PKI Materials [conduit: markdown links]
+Domain Resources Index > Defensive Security Materials [conduit: markdown links]
+Domain Resources Index > Fundamentals Materials [conduit: markdown links]
+Domain Resources Index > Governance Risk Compliance Materials [conduit: markdown links]
+Domain Resources Index > Hardware Embedded Security Materials [conduit: markdown links]
+Domain Resources Index > Infrastructure Network Security Materials [conduit: markdown links]
+Domain Resources Index > Labs Practice Materials [conduit: markdown links]
+Domain Resources Index > Offensive Security Materials [conduit: markdown links]
+Cloud Container Security Materials > Container Security Node Demo [conduit: Docker build]
+Hardware Embedded Security Materials > Android Security Sample [conduit: Gradle build]
+
+Training Reference Index > Cheat Sheet Collection [conduit: markdown links]
+Training Reference Index > OReilly Resource Index [conduit: markdown links]
+Training Reference Index > Organized Tool Index [conduit: markdown links]
+Training Reference Index > Follow Sources Index [conduit: markdown links]
+Labs Practice Materials > Lab Building Index [conduit: cross-reference]
+Application Security Materials > Offensive Security Materials [conduit: cross-reference]
+Defensive Security Materials > Threat Hunting Resources [conduit: cross-reference]
+
+Source Repository > Pull Request Assignment Workflow [conduit: pull request event]
+Source Repository > Contributor Greeting Workflow [conduit: issue or pull request event]
+Source Repository > Stale Item Workflow [conduit: scheduled workflow]
+Pull Request Assignment Workflow > Issue Pull Request Workspace [conduit: GitHub Actions]
+Contributor Greeting Workflow > Issue Pull Request Workspace [conduit: GitHub Actions]
+Stale Item Workflow > Issue Pull Request Workspace [conduit: GitHub Actions]
