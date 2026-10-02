@@ -1,0 +1,53 @@
+// @lens: sde
+title: Whisper Speech Recognition Library
+summary: Local Python speech recognition package
+
+zone "Frontend" [color: blue, pos: 891,203, size: 198,368] {
+  Python API Consumer [icon: python, pos: 956,251]
+  Command Line Interface [icon: python, pos: 956,439]
+  Example Notebooks [icon: python, pos: 956,345]
+}
+zone "Backend" [color: purple, pos: 1233,47, size: 966,224] {
+  Whisper Python Package [icon: python, pos: 1298,139]
+  Audio Preprocessing Module [icon: ffmpeg, pos: 1490,128]
+  Transformer Inference Module [icon: pytorch, pos: 1682,95]
+  Tokenizer and Language Module [icon: tiktoken, pos: 1874,95]
+  Text Normalization Module [icon: python, pos: 2066,95]
+}
+zone "Data" [color: green, pos: 2304,214, size: 198,274] {
+  Evaluation Data Specifications [icon: database, pos: 2369,356]
+  Signal Filter Assets [icon: database, pos: 2369,262]
+}
+zone "Platform & DevOps" [color: orange, pos: 12,12, size: 774,379] {
+  Source Repository [icon: github, pos: 45,71]
+  Test CI Pipeline [icon: github-actions, pos: 254,47]
+  Release CI Pipeline [icon: github-actions, pos: 98,277]
+  Python Test Suite [icon: pytest, pos: 461,154]
+  Audio Test Fixture [icon: ffmpeg, pos: 254,154]
+  Python Build Artifact [icon: python, pos: 352,283]
+  Python Package Registry [icon: pypi, pos: 619,271]
+  ML Runtime Dependencies [icon: pytorch, pos: 653,105]
+  FFmpeg Runtime Tool [icon: ffmpeg, pos: 461,60]
+}
+
+Python API Consumer > Whisper Python Package [conduit: Python API]
+Command Line Interface > Whisper Python Package [conduit: CLI invocation]
+Example Notebooks > Whisper Python Package [conduit: Python API]
+Example Notebooks > Evaluation Data Specifications [conduit: experiment reference]
+Whisper Python Package > Audio Preprocessing Module [conduit: in-process]
+Audio Preprocessing Module > Signal Filter Assets [conduit: bundled data]
+Audio Preprocessing Module > Transformer Inference Module [conduit: in-process]
+Transformer Inference Module > Tokenizer and Language Module [conduit: in-process]
+Tokenizer and Language Module > Text Normalization Module [conduit: in-process]
+ML Runtime Dependencies > Whisper Python Package [conduit: Python imports]
+FFmpeg Runtime Tool > Audio Preprocessing Module [conduit: local process]
+Audio Test Fixture > Python Test Suite [conduit: test input]
+Python Test Suite > Whisper Python Package [conduit: pytest]
+Source Repository > Test CI Pipeline [conduit: push/pull request]
+Test CI Pipeline > Python Test Suite [conduit: pytest matrix]
+Test CI Pipeline > FFmpeg Runtime Tool [conduit: test environment]
+Source Repository > Release CI Pipeline [conduit: release commit]
+Release CI Pipeline > Python Build Artifact [conduit: build]
+Python Build Artifact > Python Package Registry [conduit: twine upload]
+Python Package Registry > Python API Consumer [conduit: pip install]
+Python Package Registry > Command Line Interface [conduit: package install]
