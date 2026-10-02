@@ -1,0 +1,91 @@
+title: Secure Operating System Architecture
+summary: Production OS platform with safeguards
+
+Developer Workstation [icon: workstation]
+Internet [icon: internet]
+Remote Administrator [icon: users]
+
+group "Boot and Hardware" [color: green] {
+  Secure Boot ROM [icon: server]
+  UEFI Firmware [icon: server]
+  Trusted Platform Module [icon: server]
+  Linux Kernel Image [icon: server]
+  System RAM [icon: server]
+  Hardware Device Drivers [icon: server]
+}
+
+group "Operating System Services" [color: purple] {
+  systemd Init Service [icon: server]
+  Linux Kernel Runtime [icon: server]
+  GUI Shell [icon: server]
+  Wayland Compositor [icon: server]
+  Application Sandbox [icon: server]
+  Signed Package Manager [icon: server]
+}
+
+group "Network Services" [color: blue] {
+  Network Interface Controller [icon: router]
+  TCP IP Stack [icon: router]
+  Kernel Route Table [icon: router]
+  DNS Resolver Service [icon: server]
+  Host Firewall [icon: firewall]
+  VPN Gateway [icon: vpn]
+}
+
+group "Data Storage" [color: orange] {
+  Encrypted File System [icon: database]
+  PostgreSQL Database [icon: database]
+  Database Backup Service [icon: database]
+  Object Storage Archive [icon: database]
+  Secure Configuration Store [icon: database]
+}
+
+group "Security and Monitoring" [color: red] {
+  Identity Access Service [icon: azure-active-directory]
+  Secrets Vault [icon: key-vault]
+  Endpoint Detection Agent [icon: crowdstrike]
+  Audit Logger [icon: azure-monitor]
+  Security Information Event Manager [icon: siem]
+  System Monitoring Agent [icon: azure-monitor]
+}
+
+Secure Boot ROM > UEFI Firmware [conduit: firmware initialization]
+Trusted Platform Module > UEFI Firmware [conduit: measured boot]
+UEFI Firmware > Linux Kernel Image [conduit: Secure Boot signature validation]
+Linux Kernel Image > Linux Kernel Runtime [conduit: verified kernel load]
+Linux Kernel Runtime > System RAM [conduit: memory management]
+Linux Kernel Runtime > Hardware Device Drivers [conduit: kernel modules]
+Hardware Device Drivers > Network Interface Controller [conduit: device I/O]
+Linux Kernel Runtime > systemd Init Service [conduit: process initialization]
+systemd Init Service > GUI Shell [conduit: local IPC]
+GUI Shell > Wayland Compositor [conduit: Wayland]
+Wayland Compositor > Application Sandbox [conduit: application isolation]
+Signed Package Manager > Application Sandbox [conduit: signed packages]
+Linux Kernel Runtime > Encrypted File System [conduit: block I/O]
+PostgreSQL Database > Encrypted File System [conduit: SQL data files]
+Application Sandbox > PostgreSQL Database [conduit: localhost SQL]
+PostgreSQL Database > Database Backup Service [conduit: encrypted backup]
+Database Backup Service > Object Storage Archive [conduit: TLS]
+Secure Configuration Store > PostgreSQL Database [conduit: TLS]
+Linux Kernel Runtime > TCP IP Stack [conduit: kernel networking]
+TCP IP Stack > Kernel Route Table [conduit: IP routing]
+Kernel Route Table > Network Interface Controller [conduit: Ethernet]
+Application Sandbox > DNS Resolver Service [conduit: DNS]
+DNS Resolver Service > TCP IP Stack [conduit: UDP DNS]
+Internet > VPN Gateway [conduit: IPsec]
+VPN Gateway > Host Firewall [conduit: encrypted tunnel]
+Internet > Host Firewall [conduit: HTTPS]
+Host Firewall > TCP IP Stack [conduit: stateful filtering]
+Developer Workstation > VPN Gateway [conduit: IPsec]
+Remote Administrator > VPN Gateway [conduit: MFA VPN]
+VPN Gateway > GUI Shell [conduit: RDP]
+Identity Access Service > VPN Gateway [conduit: MFA authentication]
+Identity Access Service > GUI Shell [conduit: session authentication]
+Secrets Vault > Signed Package Manager [conduit: package signing keys]
+Secrets Vault > PostgreSQL Database [conduit: database credentials]
+Endpoint Detection Agent > Linux Kernel Runtime [conduit: kernel telemetry]
+Linux Kernel Runtime > Audit Logger [conduit: audit events]
+Audit Logger > Security Information Event Manager [conduit: syslog TLS]
+Endpoint Detection Agent > Security Information Event Manager [conduit: security telemetry]
+System Monitoring Agent > Linux Kernel Runtime [conduit: host metrics]
+System Monitoring Agent > Security Information Event Manager [conduit: monitoring alerts]
