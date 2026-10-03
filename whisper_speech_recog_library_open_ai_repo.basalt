@@ -2,14 +2,14 @@
 title: Whisper Speech Recognition Library
 summary: Local Python speech recognition package
 
-zone "Frontend" [color: blue, pos: 891,203, size: 198,368] {
+zone "Frontend" [color: blue, pos: 891,206, size: 227,522] {
   Python API Consumer [icon: python, pos: 956,251]
   Command Line Interface [icon: python, pos: 956,439]
   Example Notebooks [icon: python, pos: 956,345]
 }
 zone "Backend" [color: purple, pos: 1233,47, size: 966,224] {
   Whisper Python Package [icon: python, pos: 1298,139]
-  Audio Preprocessing Module [icon: ffmpeg, pos: 1490,128]
+  Audio Preprocessing Module [icon: ffmpeg, pos: 1511,81]
   Transformer Inference Module [icon: pytorch, pos: 1682,95]
   Tokenizer and Language Module [icon: tiktoken, pos: 1874,95]
   Text Normalization Module [icon: python, pos: 2066,95]
@@ -51,3 +51,7 @@ Release CI Pipeline > Python Build Artifact [conduit: build]
 Python Build Artifact > Python Package Registry [conduit: twine upload]
 Python Package Registry > Python API Consumer [conduit: pip install]
 Python Package Registry > Command Line Interface [conduit: package install]
+
+langchain [icon: ai::langchain, pos: 956,584]
+langchain > audio-preprocessing-module [conduit: ICMP]
+langchain > source-repository [conduit: SSL]
