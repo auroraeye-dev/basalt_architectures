@@ -1,0 +1,93 @@
+title: Precision Oncology CDS Platform
+summary: Genomics analytics for clinical decisions
+
+zone "Clinical Users" [color: blue, pos: 1897,733, size: 198,368] {
+  Oncologist [icon: users, pos: 1962,781]
+  Molecular Tumor Board [icon: users, pos: 1962,875]
+  Patient Portal User [icon: users, pos: 1962,969]
+}
+
+zone "Healthcare Data Sources" [color: green, pos: 111,538, size: 198,462] {
+  EHR Clinical Records [icon: database, pos: 176,774]
+  Genomic Sequencing Lab [icon: server, pos: 176,574]
+  Pathology Imaging System [icon: server, pos: 176,677]
+  Public Cancer Knowledgebases [icon: database, pos: 176,868]
+}
+
+zone "Azure Clinical Platform" [color: purple, pos: 210,1064] {
+  zone "Secure Ingestion" [color: blue, pos: 634,218, size: 966,435] {
+    Azure Application Gateway [icon: application-gateway, pos: 699,521]
+    Azure API Management [icon: api-management, pos: 891,504]
+    Azure Logic Apps Pipeline [icon: logic-apps, pos: 1083,377]
+    Azure De-identification Service [icon: health-data-services, pos: 1257,201]
+    Azure Health Data Services Clinical Store [icon: health-data-services, pos: 1467,266]
+    Azure Blob Storage Genomic Raw Zone [icon: blob-storage, pos: 699,321]
+    Azure Blob Storage Imaging Raw Zone [icon: blob-storage, pos: 699,421]
+  }
+
+  zone "Genomics Processing" [color: orange, pos: 1705,235, size: 582,296] {
+    Azure Batch Variant Calling [icon: batch, pos: 1770,305]
+    Azure Data Factory Clinical ETL [icon: data-factory, pos: 1770,399]
+    Azure Blob Storage Curated Oncology Lake [icon: blob-storage, pos: 1962,379]
+    Azure Synapse Analytics Oncology Warehouse [icon: synapse, pos: 2154,296]
+    Azure AI Search Knowledge Index [icon: ai-search, pos: 2154,390]
+  }
+
+  zone "Clinical Decision Models" [color: green, pos: 2409,226, size: 582,412] {
+    Cancer Risk Prediction Model [icon: azure-machine-learning, pos: 2474,274]
+    Early Detection Triage Model [icon: azure-machine-learning, pos: 2474,368]
+    Treatment Matching Model [icon: azure-machine-learning, pos: 2474,462]
+    Clinical Decision Support API [icon: container-apps, pos: 2666,375]
+    Evidence Review Dashboard [icon: power-bi, pos: 2858,506]
+  }
+
+  zone "Privacy Security Monitoring" [color: red, pos: 12,12, size: 390,462] {
+    Microsoft Entra ID Clinical Identity [icon: entra-id, pos: 269,342]
+    Azure RBAC Least Privilege Roles [icon: rbac, pos: 270,240]
+    Azure Key Vault PHI Encryption Keys [icon: key-vault, pos: 108,175]
+    Azure Monitor Activity Log [icon: monitor, pos: 77,60]
+    Azure Monitor Model Monitoring [icon: monitor, pos: 269,60]
+  }
+}
+
+Patient Portal User > Azure Application Gateway [conduit: HTTPS:443]
+Oncologist > Azure Application Gateway [conduit: HTTPS:443]
+Molecular Tumor Board > Evidence Review Dashboard [conduit: HTTPS:443]
+
+EHR Clinical Records > Azure API Management [conduit: HL7 FHIR over HTTPS]
+Genomic Sequencing Lab > Azure Blob Storage Genomic Raw Zone [conduit: HTTPS:443]
+Pathology Imaging System > Azure Blob Storage Imaging Raw Zone [conduit: DICOMweb HTTPS]
+Public Cancer Knowledgebases > Azure API Management [conduit: REST/TLS]
+
+Azure Application Gateway > Azure API Management [conduit: HTTPS:443]
+Azure API Management > Azure Logic Apps Pipeline [conduit: HTTPS]
+Azure API Management > Clinical Decision Support API [conduit: REST]
+Azure Logic Apps Pipeline > Azure De-identification Service [conduit: HL7 FHIR]
+Azure De-identification Service > Azure Health Data Services Clinical Store [conduit: de-identified HL7 FHIR]
+Azure Logic Apps Pipeline > Azure Data Factory Clinical ETL [conduit: ETL job]
+Azure Blob Storage Genomic Raw Zone > Azure Batch Variant Calling [conduit: S3 event]
+Azure Blob Storage Imaging Raw Zone > Azure Data Factory Clinical ETL [conduit: S3 event]
+Azure Batch Variant Calling > Azure Blob Storage Curated Oncology Lake [conduit: Parquet]
+Azure Data Factory Clinical ETL > Azure Blob Storage Curated Oncology Lake [conduit: Parquet]
+Azure Health Data Services Clinical Store > Azure Blob Storage Curated Oncology Lake [conduit: FHIR export]
+Azure Blob Storage Curated Oncology Lake > Azure Synapse Analytics Oncology Warehouse [conduit: COPY]
+Azure Blob Storage Curated Oncology Lake > Azure AI Search Knowledge Index [conduit: indexing]
+
+Azure Synapse Analytics Oncology Warehouse > Cancer Risk Prediction Model [conduit: SQL]
+Azure Synapse Analytics Oncology Warehouse > Early Detection Triage Model [conduit: SQL]
+Azure AI Search Knowledge Index > Treatment Matching Model [conduit: REST]
+Cancer Risk Prediction Model > Clinical Decision Support API [conduit: SageMaker endpoint]
+Early Detection Triage Model > Clinical Decision Support API [conduit: SageMaker endpoint]
+Treatment Matching Model > Clinical Decision Support API [conduit: SageMaker endpoint]
+Clinical Decision Support API > Evidence Review Dashboard [conduit: REST]
+Clinical Decision Support API > Oncologist [conduit: HTTPS:443]
+
+Microsoft Entra ID Clinical Identity > Azure Application Gateway [conduit: OIDC]
+Azure RBAC Least Privilege Roles > Azure Logic Apps Pipeline [conduit: IAM policy]
+Azure Key Vault PHI Encryption Keys > Azure Blob Storage Curated Oncology Lake [conduit: SSE-KMS]
+Azure Key Vault PHI Encryption Keys > Azure Health Data Services Clinical Store [conduit: encryption at rest]
+Azure Monitor Activity Log > Azure Monitor Model Monitoring [conduit: audit events]
+Azure Monitor Model Monitoring > Cancer Risk Prediction Model [conduit: model drift metrics]
+
+"Healthcare Data Sources" > "Azure Clinical Platform" [conduit: encrypted clinical ingestion]
+"Clinical Users" > "Azure Clinical Platform" [conduit: authenticated HTTPS]
