@@ -1,0 +1,59 @@
+title: Premier League Fan Intelligence
+summary: Real-time insights and personalized narratives
+
+GitHub Sandbox [icon: server]
+Match Data Providers [icon: database]
+Football Fans [icon: users]
+Web and Mobile App [icon: app-service]
+
+group "Microsoft Azure" [color: blue] {
+  group "Data Ingestion" [color: blue] {
+    Azure Data Factory [icon: data-factory]
+    Azure Event Hubs [icon: event-hub]
+    Azure API Management [icon: api-management]
+  }
+
+  group "Real-Time Processing" [color: purple] {
+    Azure Stream Analytics [icon: stream-analytics]
+    Azure Functions [icon: functions]
+    Azure Databricks [icon: databricks]
+  }
+
+  group "Data Platform" [color: green] {
+    Azure Data Lake Storage [icon: blob-storage]
+    Azure Cosmos DB [icon: cosmos-db]
+    Azure Synapse Analytics [icon: synapse]
+    Azure Fabric [icon: azure-fabric]
+  }
+
+  group "AI Experiences" [color: orange] {
+    Azure Machine Learning [icon: automl]
+    Azure OpenAI Service [icon: azure-openai]
+    Azure AI Search [icon: cloud-natural-language-api]
+    Azure AI Foundry [icon: azure-ai-foundry]
+  }
+}
+
+GitHub Sandbox > Azure Data Factory [conduit: HTTPS]
+Match Data Providers > Azure Event Hubs [conduit: HTTPS]
+Azure Data Factory > Azure Data Lake Storage [conduit: HTTPS]
+Azure Event Hubs > Azure Stream Analytics [conduit: AMQP]
+Azure Stream Analytics > Azure Functions [conduit: event trigger]
+Azure Stream Analytics > Azure Cosmos DB [conduit: SQL API]
+Azure Data Lake Storage > Azure Databricks [conduit: Delta Lake]
+Azure Databricks > Azure Synapse Analytics [conduit: SQL]
+Azure Synapse Analytics > Azure Machine Learning [conduit: SQL]
+Azure Functions > Azure OpenAI Service [conduit: REST]
+Azure Machine Learning > Azure Cosmos DB [conduit: REST]
+Azure Cosmos DB > Azure AI Search [conduit: indexer]
+Azure OpenAI Service > Azure AI Search [conduit: REST]
+Web and Mobile App > Azure API Management [conduit: HTTPS]
+Azure API Management > Azure Functions [conduit: HTTPS]
+Azure Functions > Azure Cosmos DB [conduit: SQL API]
+Azure Functions > Azure OpenAI Service [conduit: REST]
+Azure Functions > Web and Mobile App [conduit: HTTPS]
+Football Fans > Web and Mobile App [conduit: HTTPS]
+Azure Data Lake Storage > Azure Fabric [conduit: OneLake]
+Azure Fabric > Azure Synapse Analytics [conduit: SQL]
+Azure Functions > Azure AI Foundry [conduit: REST]
+Azure AI Foundry > Azure AI Search [conduit: REST]
